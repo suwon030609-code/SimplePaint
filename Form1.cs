@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Windows.Forms;
 
 namespace SimplePaint
@@ -53,6 +54,9 @@ namespace SimplePaint
             trbLineWidth.Maximum = 10;
             trbLineWidth.Value = 2;
             trbLineWidth.ValueChanged += trbLineWidth_ValueChanged;
+
+            // 저장 버튼 이벤트 연결
+            btnSaveFile.Click += btnSaveFile_Click;
         }
 
         private void btnLine_Click(object? sender, EventArgs e)
@@ -165,6 +169,42 @@ namespace SimplePaint
                 Math.Abs(p1.X - p2.X),
                 Math.Abs(p1.Y - p2.Y)
             );
+        }
+
+        private void btnSaveFile_Click(object? sender, EventArgs e)
+        {
+            using (SaveFileDialog dlg = new SaveFileDialog())
+            {
+                dlg.Title = "이미지 저장";
+                dlg.Filter = "PNG 파일 (*.png)|*.png|JPG 파일 (*.jpg)|*.jpg|BMP 파일 (*.bmp)|*.bmp";
+                dlg.DefaultExt = "png";
+
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    string ext = System.IO.Path.GetExtension(dlg.FileName).ToLower();
+
+                    switch (ext)
+                    {
+                        case ".png":
+                            canvasBitmap.Save(dlg.FileName, ImageFormat.Png);
+                            break;
+
+                        case ".jpg":
+                            canvasBitmap.Save(dlg.FileName, ImageFormat.Jpeg);
+                            break;
+
+                        case ".bmp":
+                            canvasBitmap.Save(dlg.FileName, ImageFormat.Bmp);
+                            break;
+
+                        default:
+                            canvasBitmap.Save(dlg.FileName, ImageFormat.Png);
+                            break;
+                    }
+
+                    MessageBox.Show("이미지가 저장되었습니다.");
+                }
+            }
         }
     }
 }
