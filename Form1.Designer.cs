@@ -41,11 +41,16 @@
             btnOpenFile = new Button();
             btnSaveFile = new Button();
             picCanvas = new PictureBox();
+            pnlCanvasContainer = new Panel();
+            btnZoomIn = new Button();
+            btnZoomOut = new Button();
+            lblZoom = new Label();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)trbLineWidth).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picCanvas).BeginInit();
+            pnlCanvasContainer.SuspendLayout();
             SuspendLayout();
             // 
             // lblAppName
@@ -135,6 +140,7 @@
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(lblZoom);
             groupBox3.Controls.Add(trbLineWidth);
             groupBox3.Location = new Point(855, 161);
             groupBox3.Name = "groupBox3";
@@ -156,9 +162,9 @@
             // 
             btnOpenFile.BackColor = SystemColors.Info;
             btnOpenFile.Font = new Font("맑은 고딕", 16.125F, FontStyle.Bold, GraphicsUnit.Point, 129);
-            btnOpenFile.Location = new Point(1243, 213);
+            btnOpenFile.Location = new Point(1237, 179);
             btnOpenFile.Name = "btnOpenFile";
-            btnOpenFile.Size = new Size(130, 110);
+            btnOpenFile.Size = new Size(130, 80);
             btnOpenFile.TabIndex = 5;
             btnOpenFile.Text = "열기";
             btnOpenFile.UseVisualStyleBackColor = false;
@@ -167,9 +173,9 @@
             // 
             btnSaveFile.BackColor = Color.OliveDrab;
             btnSaveFile.Font = new Font("맑은 고딕", 16.125F, FontStyle.Bold, GraphicsUnit.Point, 129);
-            btnSaveFile.Location = new Point(1397, 213);
+            btnSaveFile.Location = new Point(1398, 179);
             btnSaveFile.Name = "btnSaveFile";
-            btnSaveFile.Size = new Size(130, 110);
+            btnSaveFile.Size = new Size(130, 80);
             btnSaveFile.TabIndex = 6;
             btnSaveFile.Text = "저장";
             btnSaveFile.UseVisualStyleBackColor = false;
@@ -178,18 +184,62 @@
             // 
             picCanvas.BackColor = Color.White;
             picCanvas.BorderStyle = BorderStyle.FixedSingle;
-            picCanvas.Location = new Point(51, 387);
+            picCanvas.Location = new Point(0, 0);
             picCanvas.Name = "picCanvas";
-            picCanvas.Size = new Size(1476, 520);
+            picCanvas.Size = new Size(1475, 548);
             picCanvas.TabIndex = 7;
             picCanvas.TabStop = false;
+            // 
+            // pnlCanvasContainer
+            // 
+            pnlCanvasContainer.AutoScroll = true;
+            pnlCanvasContainer.BorderStyle = BorderStyle.FixedSingle;
+            pnlCanvasContainer.Controls.Add(picCanvas);
+            pnlCanvasContainer.Location = new Point(51, 367);
+            pnlCanvasContainer.Name = "pnlCanvasContainer";
+            pnlCanvasContainer.Size = new Size(1477, 550);
+            pnlCanvasContainer.TabIndex = 8;
+            // 
+            // btnZoomIn
+            // 
+            btnZoomIn.BackColor = Color.FromArgb(128, 128, 255);
+            btnZoomIn.Font = new Font("맑은 고딕", 16.125F, FontStyle.Bold);
+            btnZoomIn.Location = new Point(1237, 280);
+            btnZoomIn.Name = "btnZoomIn";
+            btnZoomIn.Size = new Size(130, 80);
+            btnZoomIn.TabIndex = 9;
+            btnZoomIn.Text = "확대 +";
+            btnZoomIn.UseVisualStyleBackColor = false;
+            // 
+            // btnZoomOut
+            // 
+            btnZoomOut.BackColor = Color.FromArgb(255, 128, 128);
+            btnZoomOut.Font = new Font("맑은 고딕", 16.125F, FontStyle.Bold);
+            btnZoomOut.Location = new Point(1398, 280);
+            btnZoomOut.Name = "btnZoomOut";
+            btnZoomOut.Size = new Size(130, 80);
+            btnZoomOut.TabIndex = 10;
+            btnZoomOut.Text = "축소 -";
+            btnZoomOut.UseVisualStyleBackColor = false;
+            // 
+            // lblZoom
+            // 
+            lblZoom.AutoSize = true;
+            lblZoom.Font = new Font("맑은 고딕", 12F, FontStyle.Regular, GraphicsUnit.Point, 129);
+            lblZoom.Location = new Point(253, 133);
+            lblZoom.Name = "lblZoom";
+            lblZoom.Size = new Size(101, 45);
+            lblZoom.TabIndex = 11;
+            lblZoom.Text = "100%";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(14F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1574, 929);
-            Controls.Add(picCanvas);
+            Controls.Add(btnZoomOut);
+            Controls.Add(btnZoomIn);
+            Controls.Add(pnlCanvasContainer);
             Controls.Add(btnSaveFile);
             Controls.Add(btnOpenFile);
             Controls.Add(groupBox3);
@@ -205,6 +255,7 @@
             groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)trbLineWidth).EndInit();
             ((System.ComponentModel.ISupportInitialize)picCanvas).EndInit();
+            pnlCanvasContainer.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -223,5 +274,9 @@
         private Button btnSaveFile;
         private PictureBox picCanvas;
         private TrackBar trbLineWidth;
+        private Panel pnlCanvasContainer;
+        private Button btnZoomIn;
+        private Button btnZoomOut;
+        private Label lblZoom;
     }
 }
